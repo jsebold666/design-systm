@@ -1,0 +1,55 @@
+version: 2
+defaults: &defaults
+    working_directory: ~/artifacts
+    docker:
+      - image: circleci/node:latest
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/artifacts
+      - checkout            
+      - run:
+          name: Build
+          command: |
+            yarn install
+            yarn test
+            echo "Done"
+          no_output_timeout: 5m
+
+  deploy:
+    <<: *defaults
+    steps:  
+      - attach_workspace:
+          at: ~/artifacts
+      - checkout            
+      - run:
+          branches:
+            only:
+              - master
+          name: Deploy
+          command: |
+            if [[ "$CIRCLE_BRANCH" == "master" ]]; then
+              sudo apt-get install -y build-essential awscli python3-pip software-properties-common apt-transport-https 
+              sudo pip3 install --upgrade awscli
+              echo "Generating storybook..."
+              yarn install
+              yarn buildstorybook
+              echo "Deploying to https://$AWS_S3.s3-website-us-east-1.amazonaws.com"
+              aws s3 sync ./build s3://$AWS_S3 --acl public-read
+            fi
+            echo "Done"
+          no_output_timeout: 5m
+
+workflows:
+  version: 2
+  workflow-project:
+    jobs:
+      - build:
+          context: GitJMSeguradora      
+      - deploy:
+          context: GitJMSeguradora
+          requires:
+            - build
