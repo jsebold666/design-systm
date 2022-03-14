@@ -1,17 +1,17 @@
-# jms-design-system
+# design-system
 
 This project contains reusable JavaScript React components that you can import into your project. It was inspired in GumDrops Design System
 
-[![npm version](https://badge.fury.io/js/jms-design-system.svg)](https://badge.fury.io/js/jms-design-system) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/gumgum/jms-design-system.svg?branch=master)](https://travis-ci.org/gumgum/jms-design-system)
+[![npm version](https://badge.fury.io/js/design-system.svg)](https://badge.fury.io/js/design-system) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/gumgum/design-system.svg?branch=master)](https://travis-ci.org/gumgum/design-system)
 
 ## Documentation
 
-[See the documentation](https://jms-design-system.gumgum.com) for this library and its components.
+[See the documentation](https://design-system.gumgum.com) for this library and its components.
 
 ## Installation
 
 To add a specific version, you can use
-`yarn add jms-design-system@1.0.0` (replace 1.0.0 with whatever version you want, or omit it to get the latest version)
+`yarn add design-system@1.0.0` (replace 1.0.0 with whatever version you want, or omit it to get the latest version)
 
 The current and previous versions can be found in [CHANGELOG.md](CHANGELOG.md)
 
@@ -20,12 +20,12 @@ The current and previous versions can be found in [CHANGELOG.md](CHANGELOG.md)
 The library exports its components as [ES Modules](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc), so you can import only what you need, for example:
 
 ```
-import Button from 'jms-design-system/Button';
-import Badge from 'jms-design-system/Badge';
-import Toggle from 'jms-design-system/Toggle';
+import Button from 'design-system/Button';
+import Badge from 'design-system/Badge';
+import Toggle from 'design-system/Toggle';
 ```
 
-Follow the [docs](https://jms-design-system.gumgum.com) to use your component with the correct props.
+Follow the [docs](https://design-system.gumgum.com) to use your component with the correct props.
 
 ### Testing troubleshooting
 
@@ -35,7 +35,7 @@ Unfortunately, ESM is not yet widely available for some current tools, and runni
   Jest uses its own implementation of require and will attempt to parse files with it and babel-jest, by default, it ignores node_modules which will result in syntax errors from the import statements. Add the next line to your jest config so that it ignores everything in node_modules, except for this library:
 
     ```
-    "transformIgnorePatterns": ["/node_modules/(?!jms-design-system)"]
+    "transformIgnorePatterns": ["/node_modules/(?!design-system)"]
     ```
 
 * **For Mocha + Webpack**:
@@ -46,7 +46,7 @@ The file contents can be as simple as:
 ```
 // testSetup.js
 require('babel-register')({
-    ignore: /node_modules\/(?!jms-design-system)/
+    ignore: /node_modules\/(?!design-system)/
 });
 
 // Import it into mocha or mocha-webpack:
@@ -72,13 +72,7 @@ Then open `http://localhost:6006` on your browser. For more information visit [R
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information about contributing to this project.
 
-## Contributors
 
-A special thank you to the following contributors!
-
-[Paulo Soares](https://github.com/paulosoares86)
-[Rodrigo Gama](https://github.com/rodrigogama)
-[Heitor Prezia](https://github.com/hprezia)
 
 ## License
 
